@@ -1,31 +1,12 @@
 pipeline {
     agent any
-    tools {
-        maven 'mvn-3.5.3'
-        jdk 'JDK11'
-    }
     stages {
         stage('Checkout') {
             steps {
-                echo 'Maven version'
-                sh 'mvn -B'
+                echo 'check docker version...'
+                echo 'docker version'
 
-            }
-        }
-        stage('Build') {
-            steps {
-                echo 'Maven version'
-                sh 'mvn -B'
-
-            }
-        }
-        stage('Front-End') {
-            agent {
-                docker { image 'node:14-alpine' }
-            }
-            steps {
-                sh 'node --version'
-            }
+            } 
         }
     }
 }
