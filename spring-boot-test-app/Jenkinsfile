@@ -14,7 +14,7 @@ pipeline {
                 echo 'Checkout started...'
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/dhnnjy11/spring-boot-test-app.git']]])
                 sh 'mvn -f cacheable-data clean package'
-                sh 'ls -a'
+                sh 'ls -R'
             } 
         }
         stage("Build Docker Image") {
