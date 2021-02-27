@@ -3,12 +3,22 @@ pipeline {
     tools {
         maven "3.6.3"
     }
+    environment { 
+        dockerImage = ''
+        registry = 'dhnnjy11/cacheable-data:test'
+
+    }
     stages {
         stage('Checkout') {
             steps {
                 echo 'Checkout started...'
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/dhnnjy11/spring-boot-test-app.git']]])
             } 
+        }
+        stage("Build Docker Image") {
+            steps {
+                dockerImage = docker.build registry
+            }
         }
     }
 }
